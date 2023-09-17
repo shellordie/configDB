@@ -15,7 +15,15 @@ class Virvadb():
     def create(self,dico):
         self.config=ConfigParser()
         sid=0
-        self.config[sid]=dico
+        if os.path.getsize(self.db_path)==0:
+            sid+=1
+            self.config[sid]=dico
+        else:
+            another_config=ConfigParser()
+            another_config.read(self.db_path)
+            last_sid=another_config.sections()[-1]
+            sid=int(last_sid)+1
+            self.config[sid]=dico
 
     def save(self):
         with open(self.db_path,"a+") as f:
