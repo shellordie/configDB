@@ -13,7 +13,7 @@ setup(
        # long_description_content_type="text/markdown",
         #long_description=open("README.md","r",encoding="utf-8").read(),
         packages=find_packages(),
-        install_requires=["ini-parser"],  
+        #install_requires=["ini-parser"],  
         #keywords=["Computer-vision",
         #"preprocessing","Images","Dataset","visionner"],
         #classifiers= [
