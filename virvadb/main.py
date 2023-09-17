@@ -35,4 +35,18 @@ class Virvadb():
             f.truncate(0)
             f.close()
 
+    def get(self,sid):
+        self.config.read(self.db_path)
+        get_list=[[]]
+        for k in self.config[str(sid)]:
+            v=self.config[str(sid)][k]
+            t=[k,v]
+            get_list[0].append(t)
+        return get_list
+    
+
+
+
+
+
 
