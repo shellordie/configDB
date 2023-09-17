@@ -28,5 +28,11 @@ class Virvadb():
     def save(self):
         with open(self.db_path,"a+") as f:
             self.config.write(f)
+            f.close()
+
+    def clear(self):
+        with open(self.db_path,"a+") as f:
+            f.truncate(0)
+            f.close()
 
 
