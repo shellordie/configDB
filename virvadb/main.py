@@ -67,7 +67,14 @@ class Virvadb():
             return False
 
     def update(self,dico,sid ):
-        self.config[sid]=dico
+        another_config=ConfigParser()
+        another_config.read(self.db_path)
+        for k in another_config[str(sid)]:
+            for ku in dico:
+                if k==ku:
+                    another_config[str(sid)][k]=dico[ku]
+        self.clear()
+        self.config=another_config
         self.save()
 
     def delete(self,sid):
