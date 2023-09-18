@@ -15,8 +15,9 @@ class Virvadb():
     def len(self):
         another_config=ConfigParser()
         another_config.read(self.db_path)
-        last_sid=another_config.sections()[-1]
-        return int(last_sid)
+        last_sid=another_config.sections()
+        last_sid=len(last_sid)
+        return last_sid
 
     def create(self,dico):
         self.config=ConfigParser()
@@ -24,10 +25,12 @@ class Virvadb():
         if os.path.getsize(self.db_path)==0:
             sid+=1
             self.config[sid]=dico
+            self.save()
         else:
             last_sid=self.len()
             sid=last_sid+1
             self.config[sid]=dico
+            self.save()
 
     def save(self):
         with open(self.db_path,"a+") as f:
@@ -63,5 +66,24 @@ class Virvadb():
         else:
             return False
 
-        
+    def update(self,dico,sid ):
+        self.config[sid]=dico
+        self.save()
+
+    def delete(self,sid):
+        another_config=ConfigParser()
+        _=another_config.read(self.db_path)
+        another_config.remove_section(str(sid))
+        sections_list=another_config.sections()
+        self.clear()
+        self.config=another_config
+        self.save()
+        data_list=[] 
+        for i in range(self.len()):
+            ids=int(sections_list[i])
+            data=self.get(ids)
+            data_list.append(data)
+        self.clear()
+        for item in data_list:
+            self.create(item)
 
