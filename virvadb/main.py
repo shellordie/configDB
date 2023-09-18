@@ -12,6 +12,12 @@ class Virvadb():
             with open(self.db_path,"a+") as fp:
                 pass
 
+    def len(self):
+        another_config=ConfigParser()
+        another_config.read(self.db_path)
+        last_sid=another_config.sections()[-1]
+        return int(last_sid)
+
     def create(self,dico):
         self.config=ConfigParser()
         sid=0
@@ -19,10 +25,8 @@ class Virvadb():
             sid+=1
             self.config[sid]=dico
         else:
-            another_config=ConfigParser()
-            another_config.read(self.db_path)
-            last_sid=another_config.sections()[-1]
-            sid=int(last_sid)+1
+            last_sid=self.len()
+            sid=last_sid+1
             self.config[sid]=dico
 
     def save(self):
@@ -34,19 +38,30 @@ class Virvadb():
         with open(self.db_path,"a+") as f:
             f.truncate(0)
             f.close()
-
+    
     def get(self,sid):
         self.config.read(self.db_path)
-        get_list=[[]]
+        get_list=[]
         for k in self.config[str(sid)]:
             v=self.config[str(sid)][k]
-            t=[k,v]
-            get_list[0].append(t)
-        return get_list
+            get_list.append(k)
+            get_list.append(v)
+        it = iter(get_list)
+        the_dict=dict(zip(it,it))
+        return the_dict
     
+    def get_all(self):
+        db_len=self.len()
+        the_list=[]
+        for i in range(db_len):
+           the_list.append(self.get(i+1))
+        return the_list
 
+    def has(self,sid):
+        if sid <= self.len():
+            return True
+        else:
+            return False
 
-
-
-
+        
 
