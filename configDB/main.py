@@ -67,29 +67,16 @@ class ConfigDB():
     def update(self,section,dico):
         another_config=ConfigParser()
         another_config.read(self.db_path)
-        #for k in another_config[str(sid)]:
-        #    for ku in dico:
-        #        if k==ku:
-        #            another_config[str(sid)][k]=dico[ku]
         another_config.read_dict({section:dico})
         self.clear()
         self.config=another_config
         self.save()
 
-    def delete(self,sid):
+    def delete(self,section):
         another_config=ConfigParser()
         _=another_config.read(self.db_path)
-        another_config.remove_section(str(sid))
-        sections_list=another_config.sections()
+        another_config.remove_section(section)
         self.clear()
         self.config=another_config
         self.save()
-        data_list=[] 
-        for i in range(self.len()):
-            ids=int(sections_list[i])
-            data=self.get(ids)
-            data_list.append(data)
-        self.clear()
-        for item in data_list:
-            self.create(item)
-
+        
