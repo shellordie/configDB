@@ -46,9 +46,6 @@ class ConfigDB():
         return the_dict
     
     def get_sections(self):
-        #another_config=ConfigParser()
-        #another_config.read(self.db_path)
-        #sections_list=another_config.sections()
         self.config.read(self.db_path)
         sections_list=self.config.sections()
         return sections_list
@@ -67,13 +64,14 @@ class ConfigDB():
         else:
             return False
 
-    def update(self,dico,sid ):
+    def update(self,section,dico):
         another_config=ConfigParser()
         another_config.read(self.db_path)
-        for k in another_config[str(sid)]:
-            for ku in dico:
-                if k==ku:
-                    another_config[str(sid)][k]=dico[ku]
+        #for k in another_config[str(sid)]:
+        #    for ku in dico:
+        #        if k==ku:
+        #            another_config[str(sid)][k]=dico[ku]
+        another_config.read_dict({section:dico})
         self.clear()
         self.config=another_config
         self.save()
