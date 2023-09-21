@@ -46,10 +46,12 @@ class ConfigDB():
         return the_dict
     
     def get_all(self):
-        db_len=self.len()
+        another_config=ConfigParser()
+        another_config.read(self.db_path)
+        sections_list=another_config.sections()
         the_list=[]
-        for i in range(db_len):
-           the_list.append(self.get(i+1))
+        for section in sections_list:
+           the_list.append(self.get(section))
         return the_list
 
     def has(self,section):
