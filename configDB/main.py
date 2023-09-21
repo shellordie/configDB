@@ -2,9 +2,9 @@ from configparser import ConfigParser
 import os
 
 class ConfigDB():
-    def __init__(self,name):
+    def __init__(self,name:str):
         self.current_path=os.getcwd()
-        self.db_folder_path=r"{}/db".format(self.current_path)
+        self.db_folder_path=r"{}/configs".format(self.current_path)
         self.db_path=r"{}/{}.ini".format(self.db_folder_path,name)
         if not os.path.exists(self.db_folder_path):
             os.mkdir(self.db_folder_path)
@@ -19,12 +19,12 @@ class ConfigDB():
         last_sid=len(last_sid)
         return last_sid
 
-    def create(self,section,dico):
+    def create(self,section:str,dico:dict):
         self.config=ConfigParser()
         self.config[section]=dico
-        self.save()
+        self.__save()
 
-    def save(self):
+    def __save(self):
         with open(self.db_path,"a+") as f:
             self.config.write(f)
             f.close()
@@ -34,7 +34,7 @@ class ConfigDB():
             f.truncate(0)
             f.close()
     
-    def get(self,section):
+    def get(self,section:str):
         self.config.read(self.db_path)
         get_list=[]
         for k in self.config[section]:
@@ -57,26 +57,30 @@ class ConfigDB():
            the_list.append(self.get(section))
         return the_list
 
-    def has(self,section):
+    def iter(self):
+        self.config.read(self.db_path)
+        return self.config
+
+    def has(self,section:str):
         sections_list=self.get_sections()
         if section in sections_list:
             return True
         else:
             return False
 
-    def update(self,section,dico):
+    def update(self,section:str,dico:dict):
         another_config=ConfigParser()
         another_config.read(self.db_path)
         another_config.read_dict({section:dico})
         self.clear()
         self.config=another_config
-        self.save()
+        self.__save()
 
-    def delete(self,section):
+    def delete(self,section:str):
         another_config=ConfigParser()
         _=another_config.read(self.db_path)
         another_config.remove_section(section)
         self.clear()
         self.config=another_config
-        self.save()
+        self.__save()
         
