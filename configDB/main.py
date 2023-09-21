@@ -45,17 +45,24 @@ class ConfigDB():
         the_dict=dict(zip(it,it))
         return the_dict
     
+    def get_sections(self):
+        #another_config=ConfigParser()
+        #another_config.read(self.db_path)
+        #sections_list=another_config.sections()
+        self.config.read(self.db_path)
+        sections_list=self.config.sections()
+        return sections_list
+
     def get_all(self):
-        another_config=ConfigParser()
-        another_config.read(self.db_path)
-        sections_list=another_config.sections()
+        sections_list=self.get_sections()
         the_list=[]
         for section in sections_list:
            the_list.append(self.get(section))
         return the_list
 
     def has(self,section):
-        if sid <= self.len():
+        sections_list=self.get_sections()
+        if section in sections_list:
             return True
         else:
             return False
