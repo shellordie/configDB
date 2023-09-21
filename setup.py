@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 VERSION = '0.0.1' 
-DESCRIPTION = "Ini db for virva games"
+DESCRIPTION = "A database like config generator"
 
 setup(
-        name="virvadb", 
+        name="configDB", 
         version=VERSION,
         author="charles TCHANAKE",
         author_email="shellordie@gmail.com",
-        url="https://github.com/shellordie/virvadb",
+        #url="https://github.com/shellordie/virvadb",
         description=DESCRIPTION,
         long_description_content_type="text/markdown",
         long_description=open("README.md","r",encoding="utf-8").read(),
