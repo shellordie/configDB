@@ -4,7 +4,7 @@ VERSION = '0.0.1'
 DESCRIPTION = "A database like , dynamic config file generator to enable more customization in your python project . From games to ML notebooks and everything between."
 
 setup(
-        name="configDB", 
+        name="config_DB", 
         version=VERSION,
         author="charles TCHANAKE",
         author_email="shellordie@gmail.com",
