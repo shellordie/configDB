@@ -106,3 +106,7 @@ pip install configDB
 If you need help or want a feature open an issue and i will look into it
 
 Thanks you.
+
+## Screenshot
+
+![screenshot](rsc/img.PNG)
