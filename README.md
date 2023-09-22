@@ -63,7 +63,7 @@ pip install configDB
 ### Read from the db with "get()"
 
 ```python
->>> settings_data=get("settings") # take the section name and return a dictionnary 
+>>> settings_data=db.get("settings") # take the section name and return a dictionnary 
 >>> for key in settings_data: # print individual elements
 >>>     print(key, settings_data[key])
 ```
