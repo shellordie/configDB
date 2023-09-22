@@ -1,13 +1,15 @@
 ## configDB 
 
 A database like , dynamic config file generator to enable more customization in
-your python project . from games to ML notebooks and everything between
+your python project . From games to ML notebooks and everything between.
 
 ## Support 
 
 [x] Ini file type
 
 [x] CRUD operations
+
+[x] Zero dependency
 
 ## Install
 
@@ -62,7 +64,6 @@ pip install configDB
 
 ```python
 >>> settings_data=get("settings") # take the section name and return a dictionnary 
-
 >>> for key in settings_data: # print individual elements
 >>>     print(key, settings_data[key])
 ```
@@ -86,4 +87,22 @@ pip install configDB
 >>> db.delete("settings")
 ```
 
+## Other methods
 
+```
+>>> len() # return the len of your configDB
+
+>>> clear() # clear all sections in your configDB
+
+>>> get_sections() # return all sections name in your configDB
+
+>>> get_all() # return all sections data in your configDB
+
+>>> has("section_name") # return True if the section name exist and False if not
+```
+
+## Help
+
+if you need help or want a feature open an issue and i will look into it
+
+Thanks you.
