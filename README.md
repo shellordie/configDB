@@ -37,12 +37,6 @@ chmod +x run.sh
 ./run.sh
 ```
 
-### From pypi 
-
-```bash
-pip install configDB
-```
-
 ## Basic Usage
 
 ### Initialize configDB 
