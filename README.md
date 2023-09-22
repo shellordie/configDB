@@ -5,11 +5,11 @@ your python project . From games to ML notebooks and everything between.
 
 ## Support 
 
-[x] Ini file type
+[X] Ini file type
 
-[x] CRUD operations
+[X] CRUD operations
 
-[x] Zero dependency
+[X] Zero dependency
 
 ## Install
 
@@ -89,7 +89,7 @@ pip install configDB
 
 ## Other methods
 
-```
+```python
 >>> len() # return the len of your configDB
 
 >>> clear() # clear all sections in your configDB
@@ -101,8 +101,8 @@ pip install configDB
 >>> has("section_name") # return True if the section name exist and False if not
 ```
 
-## Help
+## Need Help ?
 
-if you need help or want a feature open an issue and i will look into it
+If you need help or want a feature open an issue and i will look into it
 
 Thanks you.
