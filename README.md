@@ -48,8 +48,8 @@ pip install configDB
 ### Initialize configDB 
 
 ```python
->>> db=configDB("config") 
-# configDB generate a folder "configs" with a file "config.ini"
+>>> from configDB import ConfigDB # import ConfiDB
+>>> db=ConfigDB("config") # configDB generate a folder "configs" with a file "config.ini"
 ```
 
 ### Create a section with it's elements 
