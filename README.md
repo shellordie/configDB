@@ -3,18 +3,28 @@
 A database like , dynamic config file generator to enable more customization in
 your python project . from games to ML notebooks and everything between
 
+## Support 
+
+[x] Ini file type
+
+[x] CRUD operations
+
 ## Install
 
-## From main branch 
+### From main branch 
 
 ```bash
 pip install git+https://github.com/shellordie/configDB.git@main
 ```
 
-## From source
+### From source
 
 ```bash
 git clone https://github.com/shellordie/configDB
+```
+
+```
+cd configDB
 ```
 
 ```bash
@@ -25,37 +35,55 @@ chmod +x run.sh
 ./run.sh
 ```
 
-## From pypi 
+### From pypi 
 
 ```bash
 pip install configDB
 ```
 
-## Support 
-
-[x] Ini file type
-[x] CRUD operations
-
-## Usage
+## Basic Usage
 
 ### Initialize configDB 
 
 ```python
 >>> db=configDB("config") 
-
 # configDB generate a folder "configs" with a file "config.ini"
 ```
 
-### create a section with elements 
+### Create a section with it's elements 
 
 ```python
-# create db take the section name for first agument and the data to be added for second
-argument 
-
+# create db take the section name for first agument and the data to be added for second argument 
 # the data should be a dictionnary
-
 >>> db.create("settings",{"theme":"dark","volume":34,"menu_style":"collapse"})
 ```
 
+### Read from the db with "get()"
+
+```python
+>>> settings_data=get("settings") # take the section name and return a dictionnary 
+
+>>> for key in settings_data: # print individual elements
+>>>     print(key, settings_data[key])
+```
+
+### Read from the db with "iter()"
+
+```python
+>>> dbiterator=db.iter() # create an iterator
+>>> settings_theme =dbiterator["settings"]["theme"] # get theme from settings
+>>> print(settings_theme)
+```
+
+### Update the "theme" in  "settings" section
+
+```python
+>>> db.update("settings",{"theme":"light"}) 
+```
+### Delete the "settings" section
+
+```python
+>>> db.delete("settings")
+```
 
 
